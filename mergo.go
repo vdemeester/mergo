@@ -10,6 +10,7 @@ package mergo
 
 import (
 	"errors"
+	"fmt"
 	"reflect"
 )
 
@@ -56,6 +57,10 @@ func resolveValues(dst, src interface{}) (vDst, vSrc reflect.Value, err error) {
 		err = ErrNilArguments
 		return
 	}
+	fmt.Println(reflect.ValueOf(dst).Type())
+	fmt.Println(reflect.ValueOf(src).Type())
+	fmt.Println(reflect.ValueOf(dst).Kind())
+	fmt.Println(reflect.ValueOf(src).Kind())
 	vDst = reflect.ValueOf(dst).Elem()
 	if vDst.Kind() != reflect.Struct && vDst.Kind() != reflect.Map {
 		err = ErrNotSupported
